@@ -72,7 +72,28 @@ int evaluatePassword(const char *password) {
 }
 
 //Yash code below
+void giveSuggestions(const char *password) {
+    int len = strlen(password);
+    int hasUpper = 0, hasLower = 0, hasDigit = 0, hasSpecial = 0;
 
+    for (int i = 0; password[i] != '\0'; i++) {
+        if (isupper(password[i])) hasUpper = 1;
+        else if (islower(password[i])) hasLower = 1;
+        else if (isdigit(password[i])) hasDigit = 1;
+        else hasSpecial = 1;
+    }
+
+    if (len < 8)
+        printf("- Increase password length to at least 8 characters.\n");
+    if (!hasUpper)
+        printf("- Add at least one uppercase letter (A-Z).\n");
+    if (!hasLower)
+        printf("- Add at least one lowercase letter (a-z).\n");
+    if (!hasDigit)
+        printf("- Include digits (0-9).\n");
+    if (!hasSpecial)
+        printf("- Add special characters (!, @, #, $, etc.).\n");
+}
 
 
 
